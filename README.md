@@ -1,7 +1,8 @@
 <h1> <img src="res/SpongeSplits.png" alt="LiveSplit" height="45" width="45" align="top"/> SpongeSplits</h1>
 
-[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/velkog/SpongeSplits2/master/LICENSE)
-[![GitHub Super-Linter](https://github.com/velkog/SpongeSplits2/workflows/Lint/badge.svg)](https://github.com/velkog/SpongeSplits2/actions)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?logo=github&logoColor=white)](https://raw.githubusercontent.com/velkog/SpongeSplits2/master/LICENSE)
+[![Linter](https://github.com/velkog/SpongeSplits2/workflows/Lint/badge.svg?logo=github&logoColor=white)](https://github.com/velkog/SpongeSplits2/actions)
+[![Unit Tests](https://github.com/velkog/SpongeSplits2/workflows/Unit%20Tests/badge.svg?logo=github&logoColor=white)](https://github.com/velkog/SpongeSplits2/actions)
 
 SpongeSplits is a video autosplitting tool for SpongeBob Squarepants: Battle for Bikini Bottom.
 
