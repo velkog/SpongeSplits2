@@ -10,7 +10,7 @@ class FrameCollector(Process):
         Process.__init__(self, daemon=True)
         self.output_socket = AsyncMessageSocket(PUSH, self.PORT)
 
-    def run(self):
+    def run(self) -> None:
         self.output_socket.bind()
 
         for i in range(1000):
