@@ -1,0 +1,17 @@
+.env/
+.venv/
+env/
+venv/
+
+**/.DS_Store
+**/__pycache__
+**/*.pyc
+
+.vscode/
+.mypy_cache/
+autosplit/res/*
+autosplit/network/*_pb2.py
+build/
+dist/
+SpongeSplits.egg-info/
+tmp/

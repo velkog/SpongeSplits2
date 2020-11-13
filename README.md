@@ -1,2 +1,3 @@
-# SpongeSplits2
-A Video Autosplitting Tool for SpongeBob Squarepants: Battle for Bikini Bottom
+# Installation
+* For production installs, use: `pip install .`
+* For development also run, use: `pip install -e ".[dev]"`
