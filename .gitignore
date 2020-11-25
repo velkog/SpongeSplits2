@@ -2,6 +2,8 @@
 .venv/
 env/
 venv/
+.win-env/
+.win-venv/
 
 **/.DS_Store
 **/__pycache__
@@ -10,7 +12,7 @@ venv/
 .vscode/
 .mypy_cache/
 autosplit/res/*
-autosplit/network/*_pb2.py
+autosplit/network/protobuf/*_pb2.py
 build/
 dist/
 SpongeSplits.egg-info/

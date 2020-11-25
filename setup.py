@@ -1,5 +1,7 @@
 from setuptools import setup
 
+from conf import constants
+
 
 requirements = [
     'google-api-python-client',
@@ -16,9 +18,9 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="SpongeSplits",
-    version="0.0.1",
-    author="Velkog",
+    name=constants.TITLE,
+    version=constants.VERSION,
+    author=constants.AUTHOR,
     author_email="thevelkog@gmail.com",
     description="A Video Autosplitting Tool for SpongeBob Squarepants: Battle for Bikini Bottom",
     long_description=long_description,

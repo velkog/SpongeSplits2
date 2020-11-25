@@ -14,16 +14,11 @@ SpongeSplits is a video autosplitting tool for SpongeBob Squarepants: Battle for
 - [ ] Get codebase typed, and checks integrated with Github Actions
 - [ ] Migrate configuration files to TOML (from YAML)
 
-## Things To Note:
-
-Unfortunately for me, I needed to get this working for Windows which ended up being harder than one might've thought. To get all the different dependencies to work harmoniously, people recommeneded installing the [Unofficial Windows Binaries for Python](https://www.lfd.uci.edu/~gohlke/pythonlibs/)
-
-In the end, I was able to get all Pip-installed packages to work for the project using Python 3.6.8. My recomendation would be to use 3.6, however 3.7 **might work.** If you end up running into a DLL runtime error (on Windows), then I'd suggest to try installing these binaries. I'm keeping some of these binaries here for potential future use, but you'll likely want to download them and install for yourself from the [source](https://www.lfd.uci.edu/~gohlke/pythonlibs/).
-
-
 # Installation
 * For production installs, use: `pip install .`
 * For development also run, use: `pip install -e ".[dev]"`
 
-
-[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
+# Development
+* [Keras currently supports up to Python 3.6](https://github.com/keras-team/keras/issues/11690). Due to this limitation, this project is officially built and run on Windows Python 3.6.8. 
+* Download Python 3.6.8 here: https://www.python.org/downloads/release/python-368/
+* Unfortunately this project is intended for being run on Windows. If you're running into issues, you may find luck installing the [Unofficial Windows Binaries for Python](https://www.lfd.uci.edu/~gohlke/pythonlibs/).
