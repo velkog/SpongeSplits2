@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package autosplit.network;
-
-message Frame {
-    int32 id = 1;
-}

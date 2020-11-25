@@ -1,4 +1,5 @@
 from multiprocessing import Process
+from network.protobuf.message import PineappleResultMessage
 from network.service import AsyncMessageSocket
 from zmq import PULL
 
@@ -10,9 +11,11 @@ class ResultHandler(Process):
         Process.__init__(self, daemon=True)
 
     def run(self) -> None:
-        input_socket = AsyncMessageSocket(PULL, self.PORT)
+        input_socket = AsyncMessageSocket(PineappleResultMessage, self.PORT, PULL)
         input_socket.bind()
 
         while True:
-            result = input_socket.recv_result()
-            print(result)
+            pineapple_result_msg = input_socket.recv_message()
+            assert isinstance(pineapple_result_msg, PineappleResultMessage)
+            prediction = pineapple_result_msg.prediction
+            print(prediction)

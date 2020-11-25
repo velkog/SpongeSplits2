@@ -1,4 +1,5 @@
 from multiprocessing import Process
+from network.protobuf.message import PineappleFrameMessage, PineappleResultMessage
 from network.service import AsyncMessageSocket
 from zmq import PULL, PUSH
 
@@ -9,8 +10,12 @@ class FrameProcessor(Process):
 
     def __init__(self) -> None:
         Process.__init__(self, daemon=True)
-        self.input_socket = AsyncMessageSocket(PULL, self.INPUT_PORT)
-        self.output_socket = AsyncMessageSocket(PUSH, self.OUTPUT_PORT)
+        self.input_socket = AsyncMessageSocket(
+            PineappleFrameMessage, self.INPUT_PORT, PULL
+        )
+        self.output_socket = AsyncMessageSocket(
+            PineappleResultMessage, self.OUTPUT_PORT, PUSH
+        )
 
     def run(self) -> None:
         import random
@@ -21,9 +26,13 @@ class FrameProcessor(Process):
         self.output_socket.connect()
 
         while True:
-            data = self.input_socket.recv_frame()
-            result = f"Worker {consumer_id} processed data: {data}"
-            self.output_socket.send_result(result)
+            pineapple_frame_msg = self.input_socket.recv_message()
+            assert isinstance(pineapple_frame_msg, PineappleFrameMessage)
+
+            frame_id = pineapple_frame_msg.frame_id
+            result = f"Worker {consumer_id} processed data: {frame_id}"
+            pineapple_result_msg = PineappleResultMessage.from_data(result)
+            self.output_socket.send_message(pineapple_result_msg)
 
             from time import sleep
 

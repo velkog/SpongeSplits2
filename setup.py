@@ -3,6 +3,7 @@ from setuptools import setup
 
 requirements = [
     'google-api-python-client',
+    'PyQt5',
     'pyzmq',
 ]
 
