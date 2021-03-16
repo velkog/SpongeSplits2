@@ -2,12 +2,19 @@
 #
 # Compiling resources for SpongeSplits program
 
-SOURCES 	= autosplit/network/protobuf/
+PXX		= python3
+SOURCE		= autosplit
+MAIN		= $(SOURCE)/autosplit.py
+SOURCES 	= $(SOURCE)/network/protobuf/
 
+
+make start:
+		compile
+		$(PXX) $(MAIN)
 compile:;	for source in $(SOURCES) ; do $(MAKE) -C $$source compile ; done
 clean:;		for source in $(SOURCES) ; do $(MAKE) -C $$source clean ; done
-format:;	black autosplit/
+format:;	black $(SOURCE)/
 lint:
-			mypy autosplit/ --ignore-missing-imports --strict
-			black autosplit/ --check
-test:;		python -m unittest discover autosplit
+			mypy $(SOURCE)/ --ignore-missing-imports --strict
+			black $(SOURCE)/ --check
+test:;		python -m unittest discover $(SOURCE)
