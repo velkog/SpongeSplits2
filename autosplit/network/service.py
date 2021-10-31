@@ -23,22 +23,22 @@ class AsyncMessageSocket:
         return f"{self.TRANSPORT}://{self.HOST}:{self.PORT}"
 
     def _create_socket(self) -> Socket:
-        return Context().socket(self.socket_type)
+        return Context().socket(self.socket_type)  # type: ignore
 
     def bind(self) -> None:
         self.socket = self._create_socket()
-        self.socket.bind(self.connection_addr)
+        self.socket.bind(self.connection_addr)  # type: ignore
 
     def connect(self) -> None:
         self.socket = self._create_socket()
-        self.socket.connect(self.connection_addr)
+        self.socket.connect(self.connection_addr)  # type: ignore
 
     def send_message(self, message: ProtobufMessage) -> None:
         assert self.socket is not None
         serialized_msg = message.serialize()
-        self.socket.send(serialized_msg)
+        self.socket.send(serialized_msg)  # type: ignore
 
     def recv_message(self) -> ProtobufMessage:
         assert self.socket is not None
         serialized_msg = self.socket.recv()
-        return self.message_type.deserialize(serialized_msg)
+        return self.message_type.deserialize(serialized_msg)  # type: ignore
