@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from google.protobuf.message import Message
 from network.protobuf.pineapple_frame_pb2 import PineappleFrame
 from network.protobuf.pineapple_result_pb2 import PineappleResult
