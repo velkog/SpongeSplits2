@@ -14,23 +14,19 @@ class AsyncMessageSocket:
         self, message_type: Type[ProtobufMessage], port: int, socket_type: int
     ) -> None:
         self.message_type = message_type
-        self.socket: Optional[Socket] = None
         self.socket_type = socket_type
         self.PORT = port
+
+        self.socket: Socket = Context().socket(self.socket_type)  # type: ignore
 
     @property
     def connection_addr(self) -> str:
         return f"{self.TRANSPORT}://{self.HOST}:{self.PORT}"
 
-    def _create_socket(self) -> Socket:
-        return Context().socket(self.socket_type)  # type: ignore
-
     def bind(self) -> None:
-        self.socket = self._create_socket()
         self.socket.bind(self.connection_addr)  # type: ignore
 
     def connect(self) -> None:
-        self.socket = self._create_socket()
         self.socket.connect(self.connection_addr)  # type: ignore
 
     def send_message(self, message: ProtobufMessage) -> None:
