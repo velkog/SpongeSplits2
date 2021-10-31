@@ -3,7 +3,7 @@ from __future__ import annotations
 from google.protobuf.message import Message
 from network.protobuf.pineapple_frame_pb2 import PineappleFrame
 from network.protobuf.pineapple_result_pb2 import PineappleResult
-from typing import Optional
+from typing import Any, Optional
 
 
 class ProtobufMessage:
@@ -26,7 +26,7 @@ class ProtobufMessage:
         return serialized_object
 
     @staticmethod
-    def from_data() -> ProtobufMessage:
+    def from_data(data: Any) -> ProtobufMessage:
         raise NotImplementedError
 
 

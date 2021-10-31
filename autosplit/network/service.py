@@ -13,7 +13,7 @@ class AsyncMessageSocket:
     def __init__(
         self, message_type: Type[ProtobufMessage], port: int, socket_type: int
     ) -> None:
-        self.messasge_type = message_type
+        self.message_type = message_type
         self.socket: Optional[Socket] = None
         self.socket_type = socket_type
         self.PORT = port
@@ -41,4 +41,4 @@ class AsyncMessageSocket:
     def recv_message(self) -> ProtobufMessage:
         assert self.socket is not None
         serialized_msg = self.socket.recv()
-        return self.messasge_type.deserialize(serialized_msg)
+        return self.message_type.deserialize(serialized_msg)
