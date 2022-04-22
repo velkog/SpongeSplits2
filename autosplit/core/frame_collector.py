@@ -1,23 +1,36 @@
-from multiprocessing import Process
-from network.service import AsyncMessageSocket
-from network.protobuf.message import PineappleFrameMessage
-from zmq import PUSH
+from typing import Type
+
+from network.communication_process import ServerProcess
+from network.message_service.frame_message_service import FrameMessageService
+from PIL import Image  # type: ignore
+from settings import config
+from abc import ABC, abstractmethod
 
 
-class FrameCollector(Process):
-    PORT = 5557
+class FrameCollector(ServerProcess):
+    @property
+    def SERVER_PORT(self) -> int:
+        return config.NETWORK.COLLECTION_PORT
 
-    def __init__(self) -> None:
-        Process.__init__(self, daemon=True)
-        self.output_socket = AsyncMessageSocket(PineappleFrameMessage, self.PORT, PUSH)
+    @property
+    def SERVER_MSG_SERVICE(self) -> Type[FrameMessageService]:
+        return FrameMessageService
 
     def run(self) -> None:
-        self.output_socket.bind()
+        server_socket = self._create_server_socket()
 
-        for i in range(1000):
-            pineapple_frame_msg = PineappleFrameMessage.from_data(i)
-            self.output_socket.send_message(pineapple_frame_msg)
+        image = Image.open("autosplit/reset_frame.jpg")
+        image_mode = image.mode
+        image_height = image.height
+        image_width = image.width
+        image_data = image.tobytes()
 
+        while True:
+            frame_msg = FrameMessageService.from_data(
+                image_data, image_width, image_height, image_mode
+            )
+            server_socket.send_message(frame_msg)
+            # TODO: remove
             from time import sleep
 
-            sleep(2)
+            sleep(0.01666666666)

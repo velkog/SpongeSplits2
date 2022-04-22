@@ -1,21 +1,26 @@
-from multiprocessing import Process
-from network.protobuf.message import PineappleResultMessage
-from network.service import AsyncMessageSocket
-from zmq import PULL
+from typing import Type
+
+from network.communication_process import ClientProcess
+from network.message_service.pineapple_result_message_service import (
+    PineappleResultMessageService,
+)
+from PIL import Image  # type: ignore
+from settings import config
 
 
-class ResultHandler(Process):
-    PORT = 5558
+class ResultHandler(ClientProcess):
+    @property
+    def CLIENT_PORT(self) -> int:
+        return config.NETWORK.OUTPUT_PORT
 
-    def __init__(self) -> None:
-        Process.__init__(self, daemon=True)
+    @property
+    def CLIENT_MSG_SERVICE(self) -> Type[PineappleResultMessageService]:
+        return PineappleResultMessageService
 
     def run(self) -> None:
-        input_socket = AsyncMessageSocket(PineappleResultMessage, self.PORT, PULL)
-        input_socket.bind()
+        client_socket = self._create_client_socket()
 
         while True:
-            pineapple_result_msg = input_socket.recv_message()
-            assert isinstance(pineapple_result_msg, PineappleResultMessage)
-            prediction = pineapple_result_msg.prediction
+            pineapple_result_msg = client_socket.recv_message()
+            prediction = self.CLIENT_MSG_SERVICE(pineapple_result_msg).prediction
             print(prediction)

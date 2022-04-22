@@ -18,3 +18,15 @@ lint:
 			poetry run mypy $(SOURCE)/ --ignore-missing-imports --strict
 			poetry run black $(SOURCE)/ --check
 test:;		poetry run python -m unittest discover $(SOURCE)
+
+
+# lint:
+#                         $(ENVX) mypy $(PY_SRC)/ --ignore-missing-imports --strict
+#                         $(ENVX) pycln $(PY_SRC)/ --check
+#                         $(ENVX) isort $(PY_SRC)/ --diff
+#                         $(ENVX) black $(PY_SRC)/ --check
+
+# format:
+#                         $(ENVX) black $(PY_SRC)/
+#                         $(ENVX) pycln $(PY_SRC)/ -a
+#                         $(ENVX) isort $(PY_SRC)/

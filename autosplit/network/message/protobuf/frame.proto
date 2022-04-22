@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package autosplit.network.protobuf;
+
+message Frame {
+    bytes image_data = 1;
+    int32 width = 2;
+    int32 height = 3;
+    string mode = 4;
+}

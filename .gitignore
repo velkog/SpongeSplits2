@@ -11,9 +11,12 @@ venv/
 
 .vscode/
 .mypy_cache/
-autosplit/res/*
+!autosplit/learner/dataset/data/
+autosplit/learner/dataset/data/*
+autosplit/learner/models/checkpoints/
 autosplit/network/protobuf/*_pb2.py
 build/
 dist/
+deps/
 SpongeSplits.egg-info/
 tmp/
