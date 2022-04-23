@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements/dev.txt
-        make compile
+        make compile env=linux
     - name: Test with unit tests
       run: |
-        make test
+        make test env=linux

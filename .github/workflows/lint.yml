@@ -15,7 +15,7 @@ jobs:
     - name: Install Dependencies
       run: |
         pip install -r requirements/dev.txt
-        make compile
+        make compile env=linux
     - name: Run Linter
       run: |
-        make lint
+        make lint env=linux
