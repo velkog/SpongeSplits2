@@ -14,18 +14,12 @@ CMDX			= cmd.exe
 PWSHX			= powershell.exe
 WINX			= $(PWSHX) -executionpolicy bypass -File $(WIN_ENV) $(VENV)
 ENVX			= $(WINX)
-				ifeq ($(env), linux)
-					ENVX = 
-				endif
 
 SOURCE			= autosplit
 # MAIN			= $(SOURCE)/app.py
 
 DEPS 			= deps
 PROTOC			= $(DEPS)/protobuf/bin/protoc.exe
-				ifeq ($(env), linux)
-					PROTOC = protoc
-				endif
 PROTO_MSG_PATH	= $(SOURCE)/network/message
 PROTO_DEFS_PATH	= $(PROTO_MSG_PATH)/protobuf
 PROTO_DEFS		= frame.proto pineapple_result.proto
@@ -35,6 +29,12 @@ BLACK			= black $(SOURCE) --exclude $(PROTO_MSG_PATH)
 ISORT			= isort $(SOURCE) --skip $(PROTO_MSG_PATH)
 MYPY			= mypy $(SOURCE) --exclude $(SOURCE)/win --ignore-missing-imports --strict
 TEST			= -m unittest discover $(SOURCE)
+
+ifeq ($(env), linux)
+ENVX 			= 
+PROTOC 			= protoc
+PXX				= python3
+endif
 
 # make start:
 # 		compile
