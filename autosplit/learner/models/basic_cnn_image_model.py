@@ -1,21 +1,12 @@
-from typing import Optional
 from abc import ABC
 
-from keras.callbacks import History  # type: ignore
-from keras.engine.training import Model  # type: ignore
+from keras.engine.training import Model
 from learner.models.generic_image_model import GenericImageModel
-from tensorflow.keras import Sequential  # type: ignore
-from tensorflow.keras.layers import (  # type: ignore
-    Activation,
-    Conv2D,
-    Dense,
-    Flatten,
-    MaxPooling2D,
-    Rescaling,
-)
-from tensorflow.keras.optimizers import Adam  # type: ignore
-from tensorflow.keras.losses import SparseCategoricalCrossentropy  # type: ignore
-from tensorflow import Variable  # type: ignore
+from tensorflow import Variable
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Conv2D, Dense, Flatten, MaxPooling2D, Rescaling
+from tensorflow.keras.losses import SparseCategoricalCrossentropy
+from tensorflow.keras.optimizers import Adam
 
 
 class BasicCnnImageModel(GenericImageModel, ABC):
@@ -44,7 +35,12 @@ class BasicCnnImageModel(GenericImageModel, ABC):
         )
 
     def _compile(self) -> None:
-        optimizer = Adam(learning_rate=Variable(self.LEARNING_RATE), beta_1=Variable(0.9), beta_2=Variable(0.999), epsilon=Variable(1e-07))
+        optimizer = Adam(
+            learning_rate=Variable(self.LEARNING_RATE),
+            beta_1=Variable(0.9),
+            beta_2=Variable(0.999),
+            epsilon=Variable(1e-07),
+        )
         optimizer.iterations
         optimizer.decay = Variable(self.LEARNING_RATE / self.EPOCHS)
         self.model.compile(

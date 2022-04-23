@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from network.message.frame_pb2 import Frame
 from network.message_service.frame_message_service import FrameMessageService
-from PIL import Image  # type: ignore
+from PIL import Image
 
 
 class TestFrameMessageService(TestCase):

@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
-from keras.callbacks import History, ModelCheckpoint  # type: ignore
-from keras.engine.training import Model  # type: ignore
+from keras.callbacks import ModelCheckpoint
+from keras.engine.training import Model
 from learner.models import SubsetTypes
-from tensorflow.python.data.ops.dataset_ops import BatchDataset  # type: ignore
-from tensorflow.python.framework.errors_impl import NotFoundError  # type: ignore
+from tensorflow.python.data.ops.dataset_ops import BatchDataset
+from tensorflow.python.framework.errors_impl import NotFoundError
 
 
 class GenericModel(ABC):
@@ -82,7 +82,9 @@ class GenericModel(ABC):
 
     def _load(self) -> bool:
         if self.CHECKPOINT_PATH:
-            self.model.load_weights(self.CHECKPOINT_PATH).assert_existing_objects_matched()
+            self.model.load_weights(
+                self.CHECKPOINT_PATH
+            ).assert_existing_objects_matched()
             return True
         return False
 

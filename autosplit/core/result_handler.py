@@ -4,7 +4,6 @@ from network.communication_process import ClientProcess
 from network.message_service.pineapple_result_message_service import (
     PineappleResultMessageService,
 )
-from PIL import Image  # type: ignore
 from settings import config
 
 

@@ -1,5 +1,7 @@
-from learner.models.basic_cnn_image_model import BasicCnnImageModel
 from typing import Optional
+
+from learner.models.basic_cnn_image_model import BasicCnnImageModel
+
 
 class SpatulaModel(BasicCnnImageModel):
     @property

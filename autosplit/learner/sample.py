@@ -1,7 +1,7 @@
-from tensorflow.data import AUTOTUNE  # type: ignore
-from tensorflow.keras import Sequential  # type: ignore
-from tensorflow.keras.callbacks import ModelCheckpoint  # type: ignore
-from tensorflow.keras.layers import (  # type: ignore
+from tensorflow.data import AUTOTUNE
+from tensorflow.keras import Sequential
+from tensorflow.keras.callbacks import ModelCheckpoint
+from tensorflow.keras.layers import (
     Activation,
     Conv2D,
     Dense,
@@ -9,8 +9,8 @@ from tensorflow.keras.layers import (  # type: ignore
     MaxPooling2D,
     Rescaling,
 )
-from tensorflow.keras.losses import SparseCategoricalCrossentropy  # type: ignore
-from tensorflow.keras.utils import image_dataset_from_directory  # type: ignore
+from tensorflow.keras.losses import SparseCategoricalCrossentropy
+from tensorflow.keras.utils import image_dataset_from_directory
 
 # https://www.te1nsorflow.org/tutorials/images/classification
 

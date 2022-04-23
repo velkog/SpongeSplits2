@@ -1,17 +1,17 @@
 import os
-import cv2
-import random
 import time
+
+import cv2
 
 SPATULA_PATH = "autosplit/learner/dataset/data/spatula"
 
 WIDTH = 640
-W_WIDTH = round(WIDTH/6)
+W_WIDTH = round(WIDTH / 6)
 W_MIN = 275
 W_MAX = 325
 
 HEIGHT = 480
-H_WIDTH = round(HEIGHT/6)
+H_WIDTH = round(HEIGHT / 6)
 H_MIN = 10
 H_MAX = 50
 
@@ -26,7 +26,6 @@ for label in os.listdir(SPATULA_PATH):
         os.remove(f"{SPATULA_PATH}/{label}/new/{filename}")
     os.rmdir(f"{SPATULA_PATH}/{label}/new")
     time.sleep(3)
-
 
 
 # for label in os.listdir(SPATULA_PATH):

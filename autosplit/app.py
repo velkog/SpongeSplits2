@@ -1,7 +1,7 @@
-from learner.models.pineapple_models import SpatulaModel
+# from learner.models.pineapple_models import SpatulaModel
 
-model = SpatulaModel()
-model._train()
+# model = SpatulaModel()
+# model._train()
 
 # import logging
 # import sys

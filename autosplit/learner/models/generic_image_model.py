@@ -1,11 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from keras.engine.training import Model  # type: ignore
 from learner.models import SubsetTypes
 from learner.models.generic_model import GenericModel
-from tensorflow.keras.utils import image_dataset_from_directory  # type: ignore
-from tensorflow.python.data.ops.dataset_ops import BatchDataset  # type: ignore
+from tensorflow.keras.utils import image_dataset_from_directory
+from tensorflow.python.data.ops.dataset_ops import BatchDataset
 
 
 class GenericImageModel(GenericModel, ABC):

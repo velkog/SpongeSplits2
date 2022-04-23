@@ -2,7 +2,7 @@ from typing import Type
 
 from network.message.frame_pb2 import Frame
 from network.message_service.generic_message_service import GenericMessageService
-from PIL import Image  # type: ignore
+from PIL import Image
 
 
 class FrameMessageService(GenericMessageService):
