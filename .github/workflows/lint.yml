@@ -15,7 +15,7 @@ jobs:
     - name: Install Dependencies
       run: |
         pip install -r requirements/dev.txt
-        apt install protobuf-compiler
+        sudo apt install protobuf-compiler
         make compile env=linux
     - name: Run Linter
       run: |
