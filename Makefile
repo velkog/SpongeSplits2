@@ -32,8 +32,8 @@ PROTO_DEFS		= frame.proto pineapple_result.proto
 
 AUTOFLAKE		= autoflake $(SOURCE) autosplit -r --remove-all-unused-imports --remove-duplicate-keys --remove-unused-variables
 BLACK			= black $(SOURCE) --exclude $(PROTO_MSG_PATH)
-ISORT			= isort $(SOURCE)
-MYPY			= mypy $(SOURCE) --ignore-missing-imports --strict
+ISORT			= isort $(SOURCE) --skip $(PROTO_MSG_PATH)
+MYPY			= mypy $(SOURCE) --exclude $(SOURCE)/win --ignore-missing-imports --strict
 TEST			= -m unittest discover $(SOURCE)
 
 # make start:
