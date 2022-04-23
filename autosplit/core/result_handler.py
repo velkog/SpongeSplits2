@@ -21,5 +21,4 @@ class ResultHandler(ClientProcess):
 
         while self._is_running:
             pineapple_result_msg = client_socket.recv_message()
-            prediction = self.CLIENT_MSG_SERVICE(pineapple_result_msg).prediction
-            print(prediction)
+            self.CLIENT_MSG_SERVICE(pineapple_result_msg).prediction

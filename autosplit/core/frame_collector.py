@@ -25,16 +25,12 @@ class FrameCollector(ServerProcess):
         image.tobytes()
 
         while self._is_running:
-            import random
-
-            msg = f"hello testing {random.randint(0, 100)}"
-            print(f"Sending msg = '{msg}'")
             frame_msg = FrameMessageService.from_data(
-                str.encode(msg), image_width, image_height, image_mode
+                image.tobytes(), image_width, image_height, image_mode
             )
             server_socket.send_message(frame_msg)
             # TODO: remove
             from time import sleep
 
-            sleep(5)
+            sleep(2)
             sleep(0.01666666666)

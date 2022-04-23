@@ -25,7 +25,7 @@ class GenericProcess(Process, ABC):
         return AsyncMessageSocket(message_service, port, socket_direction)
 
     def stop(self) -> None:
-        _is_running = False
+        self._is_running = False
 
     @abstractmethod
     def run(self) -> None:
