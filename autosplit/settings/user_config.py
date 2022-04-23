@@ -16,3 +16,5 @@ EXCLUSION_LIST = [
     "Video.UI.exe",
     "WWAHost.exe",
 ]
+
+FRAME_RATE = 60

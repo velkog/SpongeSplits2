@@ -12,15 +12,15 @@ def select_window() -> BaseWindow:
         print(f"\t{i + 1}. {window.name}")
     window_index = int(input())
     assert window_index > 0 and window_index <= len(windows)
-    return windows[window_index]
+    return windows[window_index - 1]
 
 
 if __name__ == "__main__":
     window = select_window()
+    frame_collector = FrameCollector(window)
 
     # print("Creating Processes")
     frame_processor = FrameProcessor()
-    frame_collector = FrameCollector()
     result_handler = ResultHandler()
 
     # print("Starting Collector...")
