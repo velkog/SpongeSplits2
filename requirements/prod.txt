@@ -5,4 +5,3 @@ tensorflow==2.8.0
 opencv-python==4.5.5.64
 Pillow==9.1.0
 psutil==5.9.0
-pywin32==303
