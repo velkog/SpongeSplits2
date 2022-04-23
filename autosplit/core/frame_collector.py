@@ -24,7 +24,7 @@ class FrameCollector(ServerProcess):
         image_width = image.width
         image.tobytes()
 
-        while True:
+        while self._is_running:
             import random
 
             msg = f"hello testing {random.randint(0, 100)}"

@@ -29,7 +29,7 @@ class FrameProcessor(HybridProcess):
         client_socket = self._create_client_socket()
         server_socket = self._create_server_socket()
 
-        while True:
+        while self._is_running:
             frame_msg = client_socket.recv_message()
             self.CLIENT_MSG_SERVICE(frame_msg).image
             result = f"Processed data: {0}"

@@ -8,6 +8,8 @@ from zmq import PULL, PUSH
 
 
 class GenericProcess(Process, ABC):
+    _is_running = True
+
     def __init__(self) -> None:
         Process.__init__(self, daemon=True)
 
@@ -21,6 +23,9 @@ class GenericProcess(Process, ABC):
             socket_direction is PUSH or socket_direction is PULL
         ), f"Unexpected socket direction '{socket_direction}' given."
         return AsyncMessageSocket(message_service, port, socket_direction)
+
+    def stop(self) -> None:
+        _is_running = False
 
     @abstractmethod
     def run(self) -> None:
