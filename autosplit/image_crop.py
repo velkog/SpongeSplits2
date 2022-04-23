@@ -1,8 +1,3 @@
-import os
-import time
-
-import cv2
-
 SPATULA_PATH = "autosplit/learner/dataset/data/spatula"
 
 WIDTH = 640
@@ -15,17 +10,17 @@ H_WIDTH = round(HEIGHT / 6)
 H_MIN = 10
 H_MAX = 50
 
-for label in os.listdir(SPATULA_PATH):
-    print(f"Processing label = '{label}'")
-    if not os.path.isdir(f"{SPATULA_PATH}/{label}/new"):
-        continue
-    for filename in os.listdir(f"{SPATULA_PATH}/{label}/new"):
-        full_frame = cv2.imread(f"{SPATULA_PATH}/{label}/new/{filename}", 3)
-        gray_frame = cv2.cvtColor(full_frame, cv2.COLOR_BGR2GRAY)
-        cv2.imwrite(f"{SPATULA_PATH}/{label}/{filename}", gray_frame)
-        os.remove(f"{SPATULA_PATH}/{label}/new/{filename}")
-    os.rmdir(f"{SPATULA_PATH}/{label}/new")
-    time.sleep(3)
+# for label in os.listdir(SPATULA_PATH):
+#     print(f"Processing label = '{label}'")
+#     if not os.path.isdir(f"{SPATULA_PATH}/{label}/new"):
+#         continue
+#     for filename in os.listdir(f"{SPATULA_PATH}/{label}/new"):
+#         full_frame = cv2.imread(f"{SPATULA_PATH}/{label}/new/{filename}", 3)
+#         gray_frame = cv2.cvtColor(full_frame, cv2.COLOR_BGR2GRAY)
+#         cv2.imwrite(f"{SPATULA_PATH}/{label}/{filename}", gray_frame)
+#         os.remove(f"{SPATULA_PATH}/{label}/new/{filename}")
+#     os.rmdir(f"{SPATULA_PATH}/{label}/new")
+#     time.sleep(3)
 
 
 # for label in os.listdir(SPATULA_PATH):

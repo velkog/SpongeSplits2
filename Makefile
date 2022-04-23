@@ -34,7 +34,7 @@ ifeq ($(env), linux)
 ENVX 			= 
 PROTOC 			= protoc
 PXX				= python3
-MYPY			:= $(MYPY) --exclude $(SOURCE)/win
+MYPY			:= $(MYPY) --exclude $(SOURCE)os/win
 endif
 
 make start:;	$(PXX) $(MAIN)
@@ -44,7 +44,7 @@ format:
 				$(ENVX) $(AUTOFLAKE) --in-place
 				$(ENVX) $(ISORT)
 				$(ENVX) $(BLACK)
-install:;		cmd.exe /c setup.bat
+install:;		cmd.exe /c bin/setup.bat
 lint:		
 				$(ENVX) $(MYPY)
 				$(ENVX) $(AUTOFLAKE) --check
