@@ -34,7 +34,7 @@ ifeq ($(env), linux)
 ENVX 			= 
 PROTOC 			= protoc
 PXX				= python3
-MYPY			:= $(MYPY) --exclude $(SOURCE)os/win
+MYPY			:= $(MYPY) --exclude $(SOURCE)/system/win
 endif
 
 make start:;	$(PXX) $(MAIN)
