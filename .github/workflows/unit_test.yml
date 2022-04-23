@@ -19,6 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements/dev.txt
+        apt install protobuf-compiler
         make compile env=linux
     - name: Test with unit tests
       run: |
