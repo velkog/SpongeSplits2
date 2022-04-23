@@ -1,4 +1,4 @@
--r prod.txt
+-r common.txt
 
 autoflake==1.4
 black==22.3.0
