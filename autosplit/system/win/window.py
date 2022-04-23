@@ -1,8 +1,8 @@
-from os.base_window import BaseWindow
 from typing import List, Sequence
 
 from psutil import AccessDenied, NoSuchProcess, Process, ZombieProcess, process_iter
 from settings import config
+from system.base_window import BaseWindow
 from win32.win32gui import EnumWindows, IsWindowEnabled, IsWindowVisible
 from win32.win32process import GetWindowThreadProcessId
 
@@ -11,6 +11,12 @@ class Window(BaseWindow):
     def __init__(self, process: Process, win_id: int) -> None:
         BaseWindow.__init__(self, win_id)
         self.process = process
+
+    @property
+    def name(self) -> str:
+        name = self.process.name()
+        assert isinstance(name, str)
+        return name
 
     @staticmethod
     def get_windows() -> Sequence[BaseWindow]:

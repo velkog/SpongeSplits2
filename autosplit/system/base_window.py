@@ -6,6 +6,11 @@ class BaseWindow(ABC):
     def __init__(self, win_id: int):
         self.win_id = win_id
 
+    @property
+    @abstractmethod
+    def name(self) -> str:
+        raise NotImplementedError
+
     @staticmethod
     @abstractmethod
     def get_windows() -> Sequence["BaseWindow"]:
