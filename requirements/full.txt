@@ -1,0 +1,3 @@
+-r dev.txt
+
+pywin32==303

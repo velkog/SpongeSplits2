@@ -1,23 +1,25 @@
-from typing import Optional, Type
+from typing import Type
 
-from network.protobuf.message import ProtobufMessage
+from google.protobuf.message import Message
+from network.message_service.generic_message_service import GenericMessageService
 from zmq import Context
 from zmq.sugar.socket import Socket
 
 
 class AsyncMessageSocket:
+    # TODO: Move to configuration
     HOST: str = "127.0.0.1"
     TRANSPORT: str = "tcp"
     PORT: int
 
     def __init__(
-        self, message_type: Type[ProtobufMessage], port: int, socket_type: int
+        self, message_service: Type[GenericMessageService], port: int, socket_type: int
     ) -> None:
-        self.message_type = message_type
-        self.socket_type = socket_type
+        self.message_service = message_service
         self.PORT = port
-
+        self.socket_type = socket_type
         self.socket: Socket = Context().socket(self.socket_type)  # type: ignore
+        assert self.socket is not None
 
     @property
     def connection_addr(self) -> str:
@@ -29,12 +31,10 @@ class AsyncMessageSocket:
     def connect(self) -> None:
         self.socket.connect(self.connection_addr)  # type: ignore
 
-    def send_message(self, message: ProtobufMessage) -> None:
-        assert self.socket is not None
+    def send_message(self, message: GenericMessageService) -> None:
         serialized_msg = message.serialize()
         self.socket.send(serialized_msg)  # type: ignore
 
-    def recv_message(self) -> ProtobufMessage:
-        assert self.socket is not None
+    def recv_message(self) -> Message:
         serialized_msg = self.socket.recv()
-        return self.message_type.deserialize(serialized_msg)  # type: ignore
+        return self.message_service.deserialize(serialized_msg)  # type: ignore

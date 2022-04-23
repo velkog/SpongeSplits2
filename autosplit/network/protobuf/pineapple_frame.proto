@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package autosplit.network.protobuf;
-
-message PineappleFrame {
-    int32 id = 1;
-}
