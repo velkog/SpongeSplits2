@@ -1,4 +1,5 @@
 from typing import Type
+from uuid import uuid4
 
 from network.message.frame_pb2 import Frame
 from network.message_service.generic_message_service import GenericMessageService
@@ -16,6 +17,7 @@ class FrameMessageService(GenericMessageService):
     ) -> "FrameMessageService":
         frame = cls._new_message()
         assert isinstance(frame, cls._message_type())
+        frame.id = str(uuid4())
         frame.image_data = image_data
         frame.width = width
         frame.height = height
@@ -29,3 +31,9 @@ class FrameMessageService(GenericMessageService):
         return Image.frombytes(
             frame.mode, (frame.width, frame.height), frame.image_data
         )
+
+    @property
+    def id(self) -> Image:
+        frame = self.message
+        assert isinstance(frame, self._message_type())
+        return frame.id

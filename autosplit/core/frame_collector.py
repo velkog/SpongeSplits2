@@ -36,6 +36,8 @@ class FrameCollector(ServerProcess):
             if remaining_time < 0:
                 logging.warning("Unable to collect frames at 60Hz.")
             else:
-                logging.debug(f"Frame sent, sleeping for {remaining_time} seconds.")
+                logging.debug(
+                    f"Frame '{frame_msg.id.split('-')[-1]}' sent, sleeping for {'%.3f' % (remaining_time * 1000)} milliseconds."
+                )
                 sleep(1)  # TODO: remove
                 sleep(remaining_time)

@@ -1,3 +1,4 @@
+import logging
 from typing import Type
 
 from network.communication_process import HybridProcess
@@ -30,8 +31,10 @@ class FrameProcessor(HybridProcess):
         server_socket = self._create_server_socket()
 
         while self._is_running:
-            frame_msg = client_socket.recv_message()
-            self.CLIENT_MSG_SERVICE(frame_msg).image
-            result = f"Processed data: {0}"
+            frame_msg = self.CLIENT_MSG_SERVICE(client_socket.recv_message())
+            result = (
+                f"Frame '{frame_msg.id.split('-')[-1]}' processed, and results sent."
+            )
             pineapple_result_msg = PineappleResultMessageService.from_data(result)
             server_socket.send_message(pineapple_result_msg)
+            logging.debug(result)
