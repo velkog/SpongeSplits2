@@ -3,5 +3,6 @@ syntax = "proto3";
 package autosplit.network.protobuf;
 
 message PineappleResult {
-    string prediction = 1;
+    string id = 1;
+    string prediction = 2;
 }

@@ -41,7 +41,17 @@ class TestFrameMessageService(TestCase):
         message_service = FrameMessageService.from_data(
             self.IMAGE_DATA, self.WIDTH, self.HEIGHT, self.MODE
         )
-        self.assertEqual(message_service.message, self.message_service.message)
+
+        frame = message_service.message
+        original_frame = self.message_service.message
+        assert isinstance(frame, Frame)
+        assert isinstance(original_frame, Frame)
+
+        self.assertNotEqual(frame.id, original_frame.id)
+        self.assertEqual(frame.image_data, original_frame.image_data)
+        self.assertEqual(frame.width, original_frame.width)
+        self.assertEqual(frame.height, original_frame.height)
+        self.assertEqual(frame.mode, original_frame.mode)
 
     def test_get_image(self) -> None:
         image = Image.frombytes(self.MODE, (self.WIDTH, self.HEIGHT), self.IMAGE_DATA)

@@ -10,9 +10,10 @@ class PineappleResultMessageService(GenericMessageService):
         return PineappleResult
 
     @classmethod
-    def from_data(cls, prediction: str) -> "PineappleResultMessageService":
+    def from_data(cls, id: str, prediction: str) -> "PineappleResultMessageService":
         result = PineappleResultMessageService._new_message()
         assert isinstance(result, cls._message_type())
+        result.id = id
         result.prediction = prediction
         return PineappleResultMessageService(result)
 
@@ -21,3 +22,9 @@ class PineappleResultMessageService(GenericMessageService):
         result = self.message
         assert isinstance(result, self._message_type())
         return result.prediction
+
+    @property
+    def id(self) -> str:
+        result = self.message
+        assert isinstance(result, self._message_type())
+        return result.id

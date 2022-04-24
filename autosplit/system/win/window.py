@@ -18,6 +18,10 @@ from win32.win32process import GetWindowThreadProcessId
 from win32ui import CreateBitmap, CreateDCFromHandle
 
 
+def hi(f) -> str:
+    return 4
+
+
 class Window(BaseWindow):
     @staticmethod
     def get_windows() -> Sequence[BaseWindow]:

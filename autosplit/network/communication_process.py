@@ -24,9 +24,6 @@ class GenericProcess(Process, ABC):
         ), f"Unexpected socket direction '{socket_direction}' given."
         return AsyncMessageSocket(message_service, port, socket_direction)
 
-    def stop(self) -> None:
-        self._is_running = False
-
     @abstractmethod
     def run(self) -> None:
         raise NotImplementedError

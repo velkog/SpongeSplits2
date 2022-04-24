@@ -32,9 +32,9 @@ class FrameProcessor(HybridProcess):
 
         while self._is_running:
             frame_msg = self.CLIENT_MSG_SERVICE(client_socket.recv_message())
-            result = (
-                f"Frame '{frame_msg.id.split('-')[-1]}' processed, and results sent."
+            result = f"Frame '{frame_msg.id.split('-')[-1]}' processed."
+            pineapple_result_msg = PineappleResultMessageService.from_data(
+                frame_msg.id, result
             )
-            pineapple_result_msg = PineappleResultMessageService.from_data(result)
             server_socket.send_message(pineapple_result_msg)
             logging.debug(result)

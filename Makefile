@@ -27,7 +27,7 @@ PROTO_DEFS		= frame.proto pineapple_result.proto
 AUTOFLAKE		= autoflake $(SOURCE) -r --remove-all-unused-imports --remove-duplicate-keys --remove-unused-variables
 BLACK			= black $(SOURCE) --exclude $(PROTO_MSG_PATH)
 ISORT			= isort $(SOURCE) --skip $(PROTO_MSG_PATH) --profile black
-MYPY			= mypy $(SOURCE) --exclude $(SOURCE)/system/win --ignore-missing-imports --strict
+MYPY			= mypy $(SOURCE) --ignore-missing-imports --strict --exclude system/win
 TEST			= -m unittest discover $(SOURCE)
 
 ifeq ($(env), linux)

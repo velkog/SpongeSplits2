@@ -10,6 +10,7 @@ class TestPineappleResultMessageService(TestCase):
     PREDICTION = "prediction = 10"
 
     def setUp(self) -> None:
+        self.sample_id = "sample_id"
         self.result = PineappleResult()
         self.result.prediction = self.PREDICTION
         self.message_service = PineappleResultMessageService(self.result)
@@ -37,8 +38,15 @@ class TestPineappleResultMessageService(TestCase):
         )
 
     def test_from_data(self) -> None:
-        message_service = PineappleResultMessageService.from_data(self.PREDICTION)
-        self.assertEqual(message_service.message, self.message_service.message)
+        message_service = PineappleResultMessageService.from_data(self.sample_id, self.PREDICTION)
+
+        result = message_service.message
+        original_result = self.message_service.message
+        assert isinstance(result, PineappleResult)
+        assert isinstance(original_result, PineappleResult)
+
+        self.assertEqual(result.id, self.sample_id)
+        self.assertEqual(result.prediction, original_result.prediction)
 
     def test_get_prediction(self) -> None:
         self.assertEqual(self.PREDICTION, self.message_service.prediction)

@@ -1,3 +1,4 @@
+import logging
 from typing import Type
 
 from network.communication_process import ClientProcess
@@ -21,4 +22,5 @@ class ResultHandler(ClientProcess):
 
         while self._is_running:
             pineapple_result_msg = client_socket.recv_message()
-            self.CLIENT_MSG_SERVICE(pineapple_result_msg).prediction
+            result = self.CLIENT_MSG_SERVICE(pineapple_result_msg)
+            logging.debug(f"Frame '{result.id.split('-')[-1]}' handled.")

@@ -33,7 +33,7 @@ class FrameMessageService(GenericMessageService):
         )
 
     @property
-    def id(self) -> Image:
+    def id(self) -> str:
         frame = self.message
         assert isinstance(frame, self._message_type())
         return frame.id

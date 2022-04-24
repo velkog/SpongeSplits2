@@ -33,11 +33,14 @@ class FrameCollector(ServerProcess):
             server_socket.send_message(frame_msg)
             remaining_time = 1 / config.FRAME_RATE - (perf_counter() - start_time)
 
+            logging.debug(f"Frame '{frame_msg.id.split('-')[-1]}' sent.")
             if remaining_time < 0:
-                logging.warning("Unable to collect frames at 60Hz.")
+                logging.warning(
+                    f"Unable to collect frames at {config.FRAME_RATE}Hz - {'%.3f' % (remaining_time * 1000)} milliseconds behind."
+                )
             else:
                 logging.debug(
-                    f"Frame '{frame_msg.id.split('-')[-1]}' sent, sleeping for {'%.3f' % (remaining_time * 1000)} milliseconds."
+                    f"Collector sleeping for {'%.3f' % (remaining_time * 1000)} milliseconds."
                 )
-                sleep(1)  # TODO: remove
                 sleep(remaining_time)
+            sleep(5)  # TODO: remove

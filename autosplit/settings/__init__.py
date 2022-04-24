@@ -15,6 +15,6 @@ config = Config()
 logging.basicConfig(
     encoding="utf-8",
     level=logging.DEBUG,
-    format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
+    format="%(asctime)s.%(msecs)05d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
